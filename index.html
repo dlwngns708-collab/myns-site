@@ -395,7 +395,7 @@ footer b{font-family:"Noto Serif KR",Georgia,serif;color:var(--fg);font-size:16p
       result.scrollIntoView({behavior:'smooth',block:'nearest'});
     }
     var finish=function(){ btn.disabled=false; btn.textContent='견적 문의 보내기'; };
-    var ctrl=('AbortController' in window)?new AbortController():null; var timer=ctrl?setTimeout(function(){ctrl.abort();},8000):null;
+    var ctrl=('AbortController' in window)?new AbortController():null; var timer=ctrl?setTimeout(function(){ctrl.abort();},20000):null;
     fetch(FORM,{method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify(payload),signal:ctrl?ctrl.signal:undefined})
       .then(function(r){ if(timer) clearTimeout(timer); if(r.ok) showSent(); else showFallback(); })
       .catch(function(){ if(timer) clearTimeout(timer); showFallback(); })
