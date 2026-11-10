@@ -71,8 +71,12 @@ section.block{padding-block:56px}
 .card h3 small{font-weight:400;font-size:11px;color:var(--fg-3);margin-left:5px;letter-spacing:.04em}
 .card .size{font-size:12px;color:var(--fg-3);white-space:nowrap}
 .card .foot{margin-top:10px}
-.add{border:1px solid var(--line);background:transparent;color:var(--fg);border-radius:999px;padding:6px 12px;font-size:12.5px;width:100%}
-.add[data-on="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.add{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:1.5px solid var(--accent);background:var(--accent);color:var(--accent-ink);border-radius:999px;padding:9px 14px;font-size:13px;font-weight:600;width:100%;cursor:pointer;transition:background .15s,transform .1s;box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.add::before{content:"+";font-size:15px;line-height:1;font-weight:700}
+.add:hover{background:color-mix(in srgb,var(--accent) 85%,black);border-color:color-mix(in srgb,var(--accent) 85%,black)}
+.add:active{transform:scale(.98)}
+.add[data-on="true"]{background:var(--fg);border-color:var(--fg);color:var(--bg)}
+.add[data-on="true"]::before{content:"\2713"}
 
 /* 색상표 + 그 외 */
 .palette{margin-top:48px;display:grid;grid-template-columns:200px 1fr;gap:28px;align-items:start}
@@ -109,7 +113,7 @@ figcaption span{color:var(--fg-3)}
 .g6{grid-column:span 5}.g6 .ph{aspect-ratio:5/4.2}
 .g7{grid-column:span 7}.g7 .ph{aspect-ratio:7/4.2}
 .g8,.g9,.g10{grid-column:span 4}.g8 .ph,.g9 .ph,.g10 .ph{aspect-ratio:1/1}
-.gg figcaption .add{width:auto;padding:4px 10px;font-size:12px;margin-left:auto}
+.gg figcaption .add{width:auto;padding:7px 12px;font-size:12.5px;margin-left:auto;flex-shrink:0}
 @media (max-width:760px){.g1,.g2,.g3,.g4,.g5,.g6,.g7,.g8,.g9,.g10{grid-column:span 12}.gg .ph{aspect-ratio:4/3}}
 .types{margin-top:40px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
 .types .t{min-width:0;display:grid;grid-template-columns:72px 1fr;gap:12px;align-items:center}
@@ -350,7 +354,7 @@ footer b{font-family:"Noto Serif KR",Georgia,serif;color:var(--fg);font-size:16p
     empty.hidden = basket.length>0; badge.textContent = basket.length;
     items.forEach(function(c){
       var on = basket.indexOf(c.dataset.name)>-1, btn=c.querySelector('.add');
-      btn.dataset.on = on ? 'true' : 'false'; btn.textContent = on ? '담김 ✓' : '견적 담기';
+      btn.dataset.on = on ? 'true' : 'false'; btn.textContent = on ? '담김' : '견적 담기';
     });
   }
   function toggle(n){ var i=basket.indexOf(n); if(i>-1) basket.splice(i,1); else basket.push(n); save(); render(); }
